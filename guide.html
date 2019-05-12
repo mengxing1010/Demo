@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="guide.css" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<div id="slider" class="mui-slider mui-fullscreen">
+				<div class="mui-slider-group">
+					<!--第一张-->
+					<div class="mui-slider-item">
+						<div class="item-logo" style="background: url(imgs/guide01.png)no-repeat;background-size: 100% 100%;">
+							<div class="animate guide-show">
+								<h2 class="animate bounceInDown">网罗美食</h2>
+								<li class="animate bounceInLeft">尽享天下美食</li>
+								<li class="animate bounceInRight">体味百味生活</li>
+							</div>
+						</div>
+					</div>
+					<!--第二张-->
+					<div class="mui-slider-item">
+						<div class="item-logo" style="background: url(imgs/guide02.png)no-repeat;background-size: 100% 100%;">
+							<div class="animate guide-show">
+								<h2 class="animate bounceInDown">折扣多多</h2>
+								<li class="animate bounceInLeft">汇四海品味</li>
+								<li class="animate bounceInRight">来八方优惠</li>
+							</div>
+						</div>
+					</div>
+					<!--第三张-->
+					<div class="mui-slider-item">
+						<div class="item-logo" style="background: url(imgs/guide03.png)no-repeat;background-size: 100% 100%;">
+							<div class="animate guide-show">
+								<h2 class="animate bounceInDown">方便快捷</h2>
+								<li class="animate bounceInLeft">美食E时代</li>
+								<li class="animate bounceInRight">点我更精彩</li>
+							</div>
+						</div>
+					</div>
+					<!--第四张-->
+					<div class="mui-slider-item">
+						<div class="item-logo" style="background: url(imgs/guide04.png)no-repeat;background-size: 100% 100%;">
+							<div class="animate">
+								<button id="close" class="mui-btn mui-btn-warning mui-btn-outlined" 
+									style="background-color: #F6DE41;border-color:#F6DE41 ;">立即体验</button>
+							</div>
+					</div>
+				</div>
+			</div>
+			<div class="mui-slider-indicator">
+				<div class="mui-indicator mui-active"></div>
+				<div class="mui-indicator "></div>
+				<div class="mui-indicator "></div>
+				<div class="mui-indicator "></div>
+			</div>
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function(){
+				var self=plus.webview.currentWebview();
+//				立即体验按钮点击事件
+             document.getElementById("close").addEventListener("tap",function(e){
+//           	写入向导页标签
+               plus.storage.setItem("launchFlag","true");
+//             打开首页
+               mui.openWindow({
+               	url:'main.html';
+               	id:'main.html'
+               });
+               self.close();
+             });
+			});
+//			图片切换时,触发动画
+             document.querySelector('.mui-slider').addEventListener('slider',function(e){
+             	var index=e.detail.sliderNumber+1;
+             	if (index==2||index==3) {
+             		var item=document.getElementById("tips-"+index);
+             		if (item.classList.contains('.mui-hidden')) {
+             			item.classList.remove('.mui-hidden');
+             			item.classList.add('guide-show');
+             		}
+             	}
+             });
+			
+		</script>
+	</body>
+
+</html>
